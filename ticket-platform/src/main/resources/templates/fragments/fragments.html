@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:fragment="head">
+	<title>TicketPlatform</title>
+	<!--Required meta tags-->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!--bootsrap-->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.css}" />
+	<!--CSS-->
+	<link th:rel="stylesheet" th:href="@{/css/style.css}" />	
+</th:block>
+</head>
+<body>
+	
+
+	
+	<!-- Fragment for Bootstrap script -->
+	 <th:block th:fragment="scripts">
+	     <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+	 </th:block>
+	 
+	 <div th:fragment="successAlert(message)" class="alert alert-warning alert-dismissible fade show" role="alert">
+	   <span th:text="${message}"></span>
+	   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	 </div>
+	 
+	 <!--Footer-->
+	 <footer th:fragment="footer"></footer>
+</body>
+</html>

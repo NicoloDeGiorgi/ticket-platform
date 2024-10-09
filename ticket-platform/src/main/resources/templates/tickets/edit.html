@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/fragments :: head}"> 
+</head>
+<body>
+<header th:insert="~{fragments/navbar :: navbar('create')}"></header>
+
+<main class="container">
+    <div class="row justify-content-center">
+		<div class="col-12">
+			
+			<h1 class="py-4 mb-2 text-center">
+				MODIFICA: "[[${ticket.title}]]"
+			</h1>
+			
+			<form 
+			id="ticket form"
+			th:object="${ticket}"
+			th:action="@{/tickets/edit/{id}(id=${ticket.id})}"
+			th:method="post">
+			<!--per ogni errore scrivilo-->
+			<th:block th:if="${#fields.hasErrors()}">
+				<div class="ps-3">
+			<ul class="alert alert-danger">	
+				<li 
+				th:each="err : ${#fields.allErrors()}" 
+				th:text="${err}">
+				</li>
+			</ul>
+			</div>
+			</th:block>
+			
+			<div class="mb-3">
+			<label for="title" class="form-label"><strong>Titolo:</strong></label>
+			<input type="text" class="form-control" id="title" placeholder="Inserisci un titolo.." th:field="*{title}" >
+			</div>
+			<div class="mb-3">
+				<label for="details" class="form-label"><strong>Dettaglio:</strong></label>
+				<input type="text" class="form-control" id="details" placeholder="Inserisci i dettagli.." th:field="*{details}">
+			</div>
+			<div class="mb-3">
+				<label for="operator" class="form-label"><strong>Operatore:</strong></label>
+				<input type="text" class="form-control" id="operator" placeholder="Inserisci l'operatore a cui vuoi assegnarlo.." th:field="*{operator}">
+			</div>
+			<div class="mb-3">
+						<label for="state" class="form-label"><strong>Stato:</strong></label>
+						<input type="text" class="form-control" id="state" placeholder="Modifica stato.." th:field="*{state}">
+					</div>
+			<div class="mb-3 ">
+				<input type="submit" class="btn btn-primary btn-lg btn-success" value="Modifica ticket">
+				<input type="reset" class="btn btn-primary btn-lg btn-danger" value="Resetta i campi">
+			</div>
+			</div>
+			</form>
+</main>
+
+<footer th:replace="~{fragments/fragments :: footer}"></footer>
+<th:block th:replace="~{fragments/fragments :: scripts}"></th:block>
+</body>
+</html>
+
+</body>
+</html>

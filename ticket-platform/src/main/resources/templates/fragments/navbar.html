@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<header>
+		<nav th:fragment="navbar(route)" class="navbar navbar-expand-md bg-body-tertiary">
+			<div class="container">
+				<a class="navbar-brand" href="#">TICKET PLATFORM</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" th:href="@{/}"
+								th:classappend="${ route == 'home' ? 'active' : ''}">Home</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#" th:href="@{/tickets}"
+								th:classappend="${ route == 'tickets' ? 'active' : ''}">Tickets</a>
+						</li>
+
+				</div>
+			</div>
+		</nav>
+	</header>
+</body>
+
+</html>

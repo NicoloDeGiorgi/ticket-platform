@@ -8,24 +8,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name ="operators")
-public class Operator {
+@Table(name="categories")
+public class Category {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //generazione ID
 	private Integer id;
 	
-	@Column(name = "name", nullable = false) //colonna NOME OPERATORE, non può essere null
+	@Column(name="name", nullable = false, unique = true) //colonna NOME, " " , univoco
 	private String name;
-	
-	@Column(name = "email", nullable = false, unique = true) //colonna EMAIL OPERATORE, " ", deve essere univoco
-	private String email;
-	
-	//creare relazione
-	// (da fare) mostrare lista ticket assegnati 
-	
-	//GETTER E SETTER
 
+	
+	//GETTER E SETTER 
+	
 	public Integer getId() {
 		return id;
 	}
@@ -40,14 +35,6 @@ public class Operator {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 }
