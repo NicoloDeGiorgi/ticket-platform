@@ -27,9 +27,9 @@
 									Note presenti :
 								</div>
 								<li th:each="note: *{ticket.notes}">
-									<p><strong class="fw-light">Orario creazione : </strong>[[${note.createdAt}]] </p>
-									<p><strong class="fw-light">Autore : </strong>[[${note.author}]] </p>
-									<p><strong class="fw-light">Testo : </strong>[[${note.text}]] </p>
+									<p class="fw-light">Data creazione :  [[${note.createdAt}]] </p>
+									<p class="fw-light">Autore :  [[${note.author}]] </p>
+									<p class="fw-light">Testo :  [[${note.text}]] </p>
 									
 								</li>
 							</ul>

@@ -1,12 +1,12 @@
 package org.lesson.platform.ticket.controller;
 
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 import java.util.List;
 
 import org.lesson.platform.ticket.model.Note;
 import org.lesson.platform.ticket.model.Ticket;
-//import org.lesson.platform.ticket.repository.TicketRepository;
 import org.lesson.platform.ticket.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -110,10 +110,10 @@ public class TicketController {
 	}
 
      //NOTECREATE
-	@GetMapping("/notes/{id}")
+	@GetMapping("/{id}/note")
 	public String note(@PathVariable("id") Integer id, Model model) {
 		Note note = new Note();
-		note.setCreatedAt(LocalDateTime.now()); //data
+		note.setCreatedAt(LocalDate.now()); //data
 		note.setTicket(service.getById(id));  // inserisco il ticket della nota
 		model.addAttribute("note", note);
 

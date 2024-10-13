@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import jakarta.validation.Valid;
 
 @Controller
@@ -22,9 +24,9 @@ public class NoteController {
 @GetMapping()
 public String index(Model model) {
 	
-	model.addAttribute("notes", service.findAllSortByCreatedAt());
+	model.addAttribute("notes", service.findAllSortedByCreatedAt());
 	
-	return "notes";
+	return "/notes/index";
 	
 }
 
@@ -33,13 +35,14 @@ public String store(
 		// Validazione
 		@Valid @ModelAttribute("note") Note formNote,
 		BindingResult bindingResult,
-		Model model) {
+		Model model,
+		RedirectAttributes redirectAttributes) {
 	if (bindingResult.hasErrors()) { // se ci sono errori "torna indetro"
 		return "/notes/create"; 
 	}
 	service.create(formNote);	 //altrimenti salva e crea la formNote
 	
-	return "redirect:/notes/show" + formNote.getTicket().getId(); // ritorna alla show prendendo l'id della nota
+	return "redirect:/tickets/show/" + formNote.getTicket().getId(); // ritorna alla show prendendo l'id della nota
 }
   
 }

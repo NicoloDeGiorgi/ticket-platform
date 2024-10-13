@@ -1,6 +1,7 @@
 package org.lesson.platform.ticket.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +27,7 @@ public class Note {
 	private String author;
 	
 	@Column(name = "created_at")
-	private LocalDateTime createdAt;
+	private LocalDate createdAt;
 	
 	@NotNull
 	@Column(name = "textField", nullable = false) //colonna CAMPO DI TESTO, " "
@@ -55,11 +56,11 @@ public class Note {
 		this.author = author;
 	}
 
-	public LocalDateTime getCreatedAt() {
+	public LocalDate getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(LocalDateTime createdAt) {
+	public void setCreatedAt(LocalDate createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -82,6 +83,8 @@ public class Note {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+
 	
 	
 	

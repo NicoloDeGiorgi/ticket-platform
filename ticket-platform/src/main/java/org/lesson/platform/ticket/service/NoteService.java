@@ -14,7 +14,7 @@ public class NoteService {
 	@Autowired
 	private NoteRepository repository;
 	                        //ordinati per data
-	public List <Note> findAllSortByCreatedAt(){
+	public List <Note> findAllSortedByCreatedAt(){
 		return repository.findAll(Sort.by("createdAt"));	
 	}
 	
