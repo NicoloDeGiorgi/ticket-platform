@@ -110,7 +110,7 @@ public class TicketController {
 	}
 
      //NOTECREATE
-	@GetMapping("/note/{id}")
+	@GetMapping("/notes/{id}")
 	public String note(@PathVariable("id") Integer id, Model model) {
 		Note note = new Note();
 		note.setCreatedAt(LocalDateTime.now()); //data

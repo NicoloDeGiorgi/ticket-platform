@@ -2,6 +2,8 @@ package org.lesson.platform.ticket.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.Formula;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,10 +49,25 @@ public class Ticket {
 	@Size(min = 2, max = 250)
 	@Column(name = "categoria")
 	private String categoria;
+	
+	
+	@Column(name = "numberOfNotes")
+	private Integer numberOfNotes;
 
 	// RELAZIONE CON LE NOTE fa riferimento con la entità 'ticket'
-	@OneToMany(mappedBy = "ticket", cascade = { CascadeType.REMOVE })
+	@OneToMany(mappedBy = "ticket", cascade = { CascadeType.REMOVE }) // a cascata verranno rimossi tutte le note ad esse connessi
 	private List<Note> notes;
+	
+	// QUERY: calcola il numero di note associate a un ticket specifico che non sono state ancora create e (created_at null).
+	//         quindi restituisce la differenza tra il numero totale di note già associate a quel ticket (tickets.number_of_notes)
+	//         e il numero di note che soddisfano la condizione della data di creazione (created_at)
+	@Formula("(select tickets.number_of_notes-count(t.id) " +
+	         "from tickets " + 
+			 "left outer join notes t " + 
+	         "on tickets.id = t.ticket_id " +
+			 "and t.created_at is null " +
+	         "where tickets.id = id) ")
+	private Integer remainingNotes;
 
 	// GETTER E SETTER
 
@@ -114,6 +131,23 @@ public class Ticket {
 	public void setNotes(List<Note> notes) {
 		this.notes = notes;
 	}
+
+	public Integer getRemainingNotes() {
+		return remainingNotes;
+	}
+
+	public void setRemainingNotes(Integer remainingNotes) {
+		this.remainingNotes = remainingNotes;
+	}
+
+	public Integer getNumberOfNotes() {
+		return numberOfNotes;
+	}
+
+	public void setNumberOfNotes(Integer numberOfNotes) {
+		this.numberOfNotes = numberOfNotes;
+	}
+	
 
 }
 	

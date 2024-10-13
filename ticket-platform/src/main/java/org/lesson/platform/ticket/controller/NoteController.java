@@ -24,7 +24,7 @@ public String index(Model model) {
 	
 	model.addAttribute("notes", service.findAllSortByCreatedAt());
 	
-	return "notes/index";
+	return "notes";
 	
 }
 
