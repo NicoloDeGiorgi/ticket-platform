@@ -1,47 +1,59 @@
 package org.lesson.platform.ticket.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table (name ="tickets") //nome della tabella
+@Table(name = "tickets") // nome della tabella
 public class Ticket {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //generazione ID
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // generazione ID
 	private Integer id;
+
 	
-	@NotNull
-	@Size(min=5 , max=240)
+	@Size(min = 5, max = 240)
 	@NotEmpty
-	@Column(name = "title", nullable = false) //colonna TITOLO, non può essere null
+	@Column(name = "title", nullable = false) // colonna TITOLO, non può essere null
 	private String title;
+
 	
-	@NotNull
-	@Size(min=2 , max=240)
-	@Column(name = "details", nullable = false, length = 500) //colonna DETTAGLI DEL TICKET, " ", lunghezza max
+	@Size(min = 2, max = 240)
+	@Column(name = "details", nullable = false, length = 500) // colonna DETTAGLI DEL TICKET, " ", lunghezza max
 	private String details;
+
+	// ENUM utilizzato per usufruire dei valori costanti scelti in precedenza
+	// :DA_FARE, IN_CORSO, COMPLETATO
+	@Enumerated(EnumType.STRING)
+	private StatoTicket state;
 	
-   
-	@Column(name="state")
-	private String state;
-	
-	@NotNull
 	@Size(min=2 , max=250)
 	@Column (name = "operator") //operatore  a cui è asseganto il ticket
 	private String operator;
 
-	
-	//GETTER E SETTER
-	
+	@Size(min = 2, max = 250)
+	@Column(name = "categoria")
+	private String categoria;
+
+	// RELAZIONE CON LE NOTE fa riferimento con la entità 'ticket'
+	@OneToMany(mappedBy = "ticket", cascade = { CascadeType.REMOVE })
+	private List<Note> notes;
+
+	// GETTER E SETTER
+
 	public Integer getId() {
 		return id;
 	}
@@ -66,14 +78,15 @@ public class Ticket {
 		this.details = details;
 	}
 
-	public String getState() {
+	public StatoTicket getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(StatoTicket state) {
 		this.state = state;
 	}
 
+	
 	public String getOperator() {
 		return operator;
 	}
@@ -81,10 +94,28 @@ public class Ticket {
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategory(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+
 }
-	
-	
-	
 	
 
 

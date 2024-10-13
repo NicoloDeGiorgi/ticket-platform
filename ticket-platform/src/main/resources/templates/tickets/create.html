@@ -1,59 +1,74 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{fragments/fragments :: head}"> 
+
+<head th:insert="~{fragments/fragments :: head}">
 </head>
+
 <body>
-<header th:insert="~{fragments/navbar :: navbar('create')}"></header>
+	<header th:insert="~{fragments/navbar :: navbar('create')}"></header>
 
-<main class="container">
-    <div class="row justify-content-center">
-		<div class="col-12">
-			
-			<h1 class="py-4 mb-2 text-center">
-				CREA NUOVO TICKET
-			</h1>
-			
-			<form 
-			id="ticket form"
-			th:object="${ticket}"
-			th:action="@{/tickets/create}"
-			th:method="post">
-			<!--per ogni errore scrivilo-->
-			<th:block th:if="${#fields.hasErrors()}">
-				<div class="ps-3">
-			<ul class="alert alert-danger">	
-				<li 
-				th:each="err : ${#fields.allErrors()}" 
-				th:text="${err}">
-				</li>
-			</ul>
-			</div>
-			</th:block>
-			
-			<div class="mb-3">
-			<label for="title" class="form-label"><strong>Titolo:</strong></label>
-			<input type="text" class="form-control" id="title" placeholder="Inserisci un titolo.." th:field="*{title}" >
-			</div>
-			<div class="mb-3">
-				<label for="details" class="form-label"><strong>Dettaglio:</strong></label>
-				<input type="text" class="form-control" id="details" placeholder="Inserisci i dettagli.." th:field="*{details}">
-			</div>
-			<div class="mb-3">
-				<label for="operator" class="form-label"><strong>Operatore:</strong></label>
-				<input type="text" class="form-control" id="operator" placeholder="Inserisci l'operatore a cui vuoi assegnarlo.." th:field="*{operator}">
-			</div>
-			<div class="mb-3 ">
-				<input type="submit" class="btn btn-primary btn-lg btn-success" value="Crea nuovo ticket">
-				<input type="reset" class="btn btn-primary btn-lg btn-danger" value="Resetta i campi">
-			</div>
-			</div>
-			</form>
-</main>
+	<main class="container">
+		<div class="row justify-content-center">
+			<div class="col-12">
 
-<footer th:replace="~{fragments/fragments :: footer}"></footer>
-<th:block th:replace="~{fragments/fragments :: scripts}"></th:block>
+				<h1 class="py-4 mb-2 text-center">
+					CREA NUOVO TICKET
+				</h1>
+
+				<form id="ticket form" th:object="${ticket}" th:action="@{/tickets/create}" th:method="post">
+					<!--per ogni errore scrivilo-->
+					<th:block th:if="${#fields.hasErrors()}">
+						<div class="ps-3">
+							<ul class="alert alert-danger">
+								<li th:each="err : ${#fields.allErrors()}" th:text="${err}">
+								</li>
+							</ul>
+						</div>
+					</th:block>
+					<div class="mb-3">
+						<label for="title" class="form-label"><strong>Titolo:</strong></label>
+						<input type="text" class="form-control" id="title" placeholder="Inserisci un titolo.."
+							th:field="*{title}">
+					</div>
+					<div class="mb-3">
+						<label for="categoria" class="form-label"><strong>Categoria:</strong></label>
+						<input type="text" class="form-control" id="categoria" placeholder="Inserisci la cetegoria.."
+							th:field="*{categoria}">
+					</div>
+					<div class="mb-3">
+						<label for="details" class="form-label"><strong>Dettaglio:</strong></label>
+						<input type="text" class="form-control" id="details" placeholder="Inserisci i dettagli.."
+							th:field="*{details}">
+					</div>
+					<div class="mb-3">
+						<label for="operator" class="form-label"><strong>Operatore:</strong></label>
+						<input type="text" class="form-control" id="operator"
+							placeholder="Inserisci l'operatore a cui vuoi assegnarlo.." th:field="*{operator}">
+					</div>
+
+					<div class="mb-3">
+						<label for="state"><strong>Stato:</strong> </label>
+						<select id="state" name="state" th:field="${ticket.state}">
+							<option value="DA_FARE">Da Fare</option>
+							<option value="IN_CORSO">In Corso</option>
+							<option value="COMPLETATO">Completato</option>
+						</select>
+					</div>
+
+
+					<input type="submit" class="btn btn-sm btn-success" value="Crea nuovo ticket">
+					<input type="reset" class="btn btn-sm btn-danger" value="Resetta i campi">
+			</div>
+		</div>
+		</form>
+	</main>
+
+	<footer th:replace="~{fragments/fragments :: footer}"></footer>
+	<th:block th:replace="~{fragments/fragments :: scripts}"></th:block>
 </body>
+
 </html>
 
 </body>
+
 </html>

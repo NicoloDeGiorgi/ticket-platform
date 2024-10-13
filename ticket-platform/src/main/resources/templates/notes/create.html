@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{fragments/fragments :: head}">
+</head>
+
+<body>
+	<header th:insert="~{fragments/navbar :: navbar('create')}"></header>
+
+	<main class="container">
+		<div class="row justify-content-center">
+			<div class="col-12">
+
+				<h1 class="py-4 mb-2 text-center">
+					CREA NUOVA NOTA
+					<span th:text="${note.ticket.title}"></span>
+				</h1>
+				
+				
+
+				<form id="note form" 
+				th:object="${note}" 
+				th:action="@{/notes/create}" 
+				th:method="post">
+				
+				<!--mi porto l'id del ticket-->
+				<input type="hidden" th:field="*{ticket}" id="ticket">
+					
+				<!--per ogni errore scrivilo-->
+					<th:block th:if="${#fields.hasErrors()}">
+						<div class="ps-3">
+							<ul class="alert alert-danger">
+								<li th:each="err : ${#fields.allErrors()}" th:text="${err}">
+								</li>
+							</ul>
+						</div>
+					</th:block>
+					<div class="mb-3">
+						<label for="title" class="form-label"><strong>Author:</strong></label>
+						<input type="text" class="form-control" id="title" placeholder="Inserisci il tuo nome.." 
+						th:field="*{author}">
+					</div>
+					<div class="mb-3">
+						<label for="date" class="form-label"><strong>Creazione:</strong></label>
+						<input type="date" class="form-control" id="createdAt" placeholder="Inserisci la data"
+						th:field="*{createdAt}">
+					</div>
+					<div class="mb-3">
+						<label for="note" class="form-label"><strong>Nota:</strong></label>
+						<input type="text" class="form-control" id="note" placeholder="Inserisci la nota.."
+						th:field="*{text}">
+					</div>
+	
+
+					<input type="submit" class="btn btn-sm btn-success" value="Crea nuova nota">
+					<input type="reset" class="btn btn-sm btn-danger" value="Resetta i campi">
+			</div>
+		</div>
+		</form>
+	</main>
+
+	<footer th:replace="~{fragments/fragments :: footer}"></footer>
+	<th:block th:replace="~{fragments/fragments :: scripts}"></th:block>
+</body>
+
+</html>
+
+</body>
+
+</html>

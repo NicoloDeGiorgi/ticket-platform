@@ -1,15 +1,22 @@
 package org.lesson.platform.ticket.model;
 
+//import org.lesson.platform.ticket.repository.CategoryRepository;
+//import org.springframework.beans.factory.annotation.Autowired;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="categories")
 public class Category {
+	
+	//@Autowired
+	//private CategoryRepository repository;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //generazione ID
@@ -17,6 +24,7 @@ public class Category {
 	
 	@Column(name="name", nullable = false, unique = true) //colonna NOME, " " , univoco
 	private String name;
+
 
 	
 	//GETTER E SETTER 

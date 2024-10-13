@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{fragments/fragments :: head}">
+</head>
+
+<body>
+	<header th:insert="~{fragments/navbar :: navbar('operators')}"></header>
+
+	<main class="container">
+		<div class="row">
+			<div class="col-12">
+
+			
+					<h1 class="py-4 mb-2 text-center">
+						OPERATORI
+					</h1>
+					
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Nome</th>
+								<th>Email</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="operator : ${operators}">
+								<td th:text="${operator.id}"></td>
+								<td th:text="${operator.name}"></td>
+								<td th:text="${operator.email}"></td>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+			</div>
+		</div>
+	</main>
+
+	<footer th:replace="~{fragments/fragments :: footer}"></footer>
+	<th:block th:replace="~{fragments/fragments :: scripts}"></th:block>
+</body>
+
+</html>

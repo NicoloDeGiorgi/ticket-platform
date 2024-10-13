@@ -15,14 +15,17 @@
 			  <h5 class="card-header text-danger">ID operatore : [[ *{id} ]]</h5>
 			  <div class="card-body">
 			    
-			    <p class="card-text"><strong>Titolo : </strong> <span th:text="${ticket.title}"></span></p>
-				<p class="card-text"><strong>Dettaglio : </strong> <span th:text="${ticket.details}"></span></p>
-				<p class="card-text"><strong>Stato : </strong> <span th:text="${ticket.state}"></span></p>
-				<p class="card-text"><strong>Operatore : </strong>  <span th:text="${ticket.operator}"></span></p>
-				
-			    <a th:href="@{/tickets}" class="btn btn-primary">Torna indeitro</a>
-			  </div>
-			</div>
+			    <p class="card-text"><strong>Titolo : </strong><span th:text="${ticket.title}"></span></p>
+				<p class="card-text"><strong>Dettaglio : </strong><span th:text="${ticket.details}"></span></p>
+				<p class="card-text"><strong>Stato : </strong><span th:text="${ticket.state}"></span></p>
+				<p class="card-text"><strong>Operatore : </strong><span th:text="${ticket.operator}"></span></p>
+				<div class="mb-3">
+								
+				<div class="">
+					<a th:href="@{/tickets}" class="btn btn-primary">Torna indeitro</a>
+					<a th:href="@{/tickets/{id}/note(id=${ticket.id})}" class="btn btn-success">Aggiungi Nota</a>
+				</div>
+				</div>
 		
         </div>
     </div>

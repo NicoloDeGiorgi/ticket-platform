@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -23,7 +25,6 @@ public class Note {
 	@Column(name = "author", nullable = false) //colonna AUTORE, non può essere null
 	private String author;
 	
-	@NotNull
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
@@ -31,6 +32,10 @@ public class Note {
 	@Column(name = "textField", nullable = false) //colonna CAMPO DI TESTO, " "
 	private String text;
 
+	//RELAZIONE CON I TICKET
+	@ManyToOne
+	@JoinColumn(name = "ticket_id", nullable = false)
+	private Ticket ticket;
 	
 	//GETTER E SETTER
 	
@@ -65,8 +70,21 @@ public class Note {
 	public void setText(String text) {
 		this.text = text;
 	}
+
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 	
-	//creare relazione
+	
+	
 
 }
 

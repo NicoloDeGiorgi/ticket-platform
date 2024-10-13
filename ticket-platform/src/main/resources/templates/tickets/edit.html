@@ -43,9 +43,17 @@
 				<input type="text" class="form-control" id="operator" placeholder="Inserisci l'operatore a cui vuoi assegnarlo.." th:field="*{operator}">
 			</div>
 			<div class="mb-3">
-						<label for="state" class="form-label"><strong>Stato:</strong></label>
-						<input type="text" class="form-control" id="state" placeholder="Modifica stato.." th:field="*{state}">
-					</div>
+							<label for="categoria" class="form-label"><strong>Categoria:</strong></label>
+							<input type="text" class="form-control" id="categoria" placeholder="Inserisci la cetegoria.." th:field="*{categoria}">
+						</div>
+			<div class="mb-3">
+							<label for="state"><strong>Stato:</strong></label>
+							<select id="state" name="state" th:field="${ticket.state}">
+								<option value="DA_FARE">Da Fare</option>
+								<option value="IN_CORSO">In Corso</option>
+								<option value="COMPLETATO">Completato</option>
+							</select>
+						</div>
 			<div class="mb-3 ">
 				<input type="submit" class="btn btn-primary btn-lg btn-success" value="Modifica ticket">
 				<input type="reset" class="btn btn-primary btn-lg btn-danger" value="Resetta i campi">
