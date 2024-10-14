@@ -3,4 +3,3 @@ INSERT INTO operators (id, name, email) VALUES(1, 'Marco Rossi', 'marco.rossi@jm
 INSERT INTO notes (created_at, ticket_id, author, text_field) VALUES (NOW(), 1, 'Marco Rossi', 'Prima nota per il ticket con ID 1.'),(NOW(), 1, 'Nico Deggio', 'Seconda nota per il ticket con ID 1.'),(NOW(), 2, 'Laura Bianchi', 'Nota per il ticket con ID 2.'),(null, 3, 'Sara Neri', 'Nota per il ticket con ID 3.'),(null, 2, 'Marco Rossi', 'Un\'altra nota per il ticket con ID 2.');
 INSERT INTO categories (id, name) VALUES (1,'Assistenza Tecnica'), (2,'Gestione Fatture e Pagamenti');
 INSERT INTO role (id, name) VALUES (0,'ADMIN'), (1,'OPERATOR');
-INSERT INTO user (id, username, password) VALUES (0,'ADMIN','{noop}admin1'), (1,'USER','{noop}user2');

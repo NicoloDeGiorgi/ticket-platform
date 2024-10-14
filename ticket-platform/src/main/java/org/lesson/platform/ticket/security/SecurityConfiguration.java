@@ -1,6 +1,6 @@
 package org.lesson.platform.ticket.security;
 
-/*import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,9 +11,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 //contiene dei metodi annotati che indicano quale meccanismo
 //di autenticazione e autorizzazione vogliamo implementare
-//@Configuration
-//public class SecurityConfiguration {
-	/*
+@Configuration
+public class SecurityConfiguration {
+	
 	//rappresenta i permessi che hanno i vari ruoli per accedere alle varie risorse
 	@SuppressWarnings("removal")
 	@Bean
@@ -41,7 +41,7 @@ import org.springframework.security.web.SecurityFilterChain;
 	}
 	
 	//mette insieme UserDetailsService e PasswordEncoder per
-	//eseguire le query per autenticare gli utenti
+    //eseguire le query per autenticare gli utenti
 	@Bean
 	DaoAuthenticationProvider authenticationProvider() {
 	DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -51,4 +51,4 @@ import org.springframework.security.web.SecurityFilterChain;
 	}
 	
 
-}*/
+}
