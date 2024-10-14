@@ -14,13 +14,18 @@
 					DETTAGLIO DEL TICKET
 				</h1>
 				<div class="card py- mb-2 ">
-					<h5 class="card-header text-danger">ID operatore : [[ *{id} ]]</h5>
-					<div class="card-body">
+					<h4 class="card-header text-danger">
+						ID operatore : [[ *{id} ]]	
+					</h4>
 
+						
+					<div class="card-body">
 						<p class="card-text"><strong>Titolo : </strong><span th:text="${ticket.title}"></span></p>
 						<p class="card-text"><strong>Dettaglio : </strong><span th:text="${ticket.details}"></span></p>
 						<p class="card-text"><strong>Stato : </strong><span th:text="${ticket.state}"></span></p>
 						<p class="card-text"><strong>Operatore : </strong><span th:text="${ticket.operator}"></span></p>
+						<p class="card-text" th:each"category : *{categories}"><strong></strong>
+							<span th:text="*{name}"></span></p>
 						<div class="mb-3">
 							<ul>
 								<div class="text-decoration-underline fw-bold fst-italic">
@@ -33,6 +38,7 @@
 									
 								</li>
 							</ul>
+							
 
 							<div class="">
 								<a th:href="@{/tickets}" class="btn btn-primary">Torna indeitro</a>
@@ -41,7 +47,6 @@
 							</div>
 						</div>
 						
-
 					</div>
 				</div>
 			</div>

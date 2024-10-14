@@ -21,12 +21,18 @@
 
 						<li class="nav-item">
 							<a class="nav-link" href="#" th:href="@{/tickets}"
-								th:classappend="${ route == 'tickets' ? 'active' : ''}">Tickets</a>
+								th:classappend="${ route == 'tickets' ? 'active' : ''}">Ticket</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#" th:href="@{/operators}"
-								th:classappend="${ route == 'operators' ? 'active' : ''}">Operators</a>
+							<a class="nav-link" href="#" th:href="@{/categories}"
+								th:classappend="${ route == 'categories' ? 'active' : ''}">Categorie</a>
 						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#" th:href="@{/operators}"
+								th:classappend="${ route == 'operators' ? 'active' : ''}">Operatori</a>
+						</li>
+						
 
 				</div>
 			</div>

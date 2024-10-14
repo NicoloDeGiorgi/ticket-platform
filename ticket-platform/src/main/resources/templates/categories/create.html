@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{fragments/fragments :: head}">
+</head>
+
+<body>
+	<header th:insert="~{fragments/navbar :: navbar('create')}"></header>
+
+	<main class="container">
+		<div class="row justify-content-center">
+			<div class="col-12">
+
+				<h1 class="py-4 mb-2 text-center">
+					CREA NUOVA CATEGORIA
+				</h1>
+				
+				
+
+				<form id="category form" 
+				th:object="${category}" 
+				th:action="@{/categories/create}" 
+				th:method="post">
+					
+				<!--per ogni errore scrivilo-->
+					<th:block th:if="${#fields.hasErrors()}">
+						<div class="ps-3">
+							<ul class="alert alert-danger">
+								<li th:each="err : ${#fields.allErrors()}" th:text="${err}">
+								</li>
+							</ul>
+						</div>
+					</th:block>
+					<div class="mb-3">
+						
+						<label for="name" class="form-label"><strong>Name:</strong></label>
+						<input type="text" class="form-control" id="name" placeholder="Inserisci nome categoria.." 
+						th:field="*{name}">
+			
+
+					<input type="submit" class="btn btn-sm btn-success" value="Crea nuova categoria">
+					<input type="reset" class="btn btn-sm btn-danger" value="Resetta i campi">
+			</div>
+		</div>
+		</form>
+	</main>
+
+	<footer th:replace="~{fragments/fragments :: footer}"></footer>
+	<th:block th:replace="~{fragments/fragments :: scripts}"></th:block>
+</body>
+
+</html>
+
+</body>
+
+</html>

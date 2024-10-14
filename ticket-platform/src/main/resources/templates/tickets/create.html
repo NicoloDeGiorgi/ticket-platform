@@ -30,10 +30,14 @@
 						<input type="text" class="form-control" id="title" placeholder="Inserisci un titolo.."
 							th:field="*{title}">
 					</div>
-					<div class="mb-3">
-						<label for="categoria" class="form-label"><strong>Categoria:</strong></label>
-						<input type="text" class="form-control" id="categoria" placeholder="Inserisci la cetegoria.."
-							th:field="*{categoria}">
+					<div> <strong>Categoria:</strong>
+					<div th:each="category : ${categories}" role="group" aria-label="Basic radio toggle button group" >
+					<input type="checkbox" class="form-check-input" name="btnradio" autocomplete="off" th:value="${category.id}" th:id"|category_${category.id}|"
+					  th:fields="${ticket.categories}">
+					  <label th:for="|category_${category.id}|" th:text="${category.name}"></label>
+					  </div>
+					  
+
 					</div>
 					<div class="mb-3">
 						<label for="details" class="form-label"><strong>Dettaglio:</strong></label>

@@ -23,13 +23,4 @@ public class CategoryService {
 		return repository.save(category);
 	}
 
-	// edit
-	public Category ipdate(Category category) {
-		return repository.save(category);
-	}
-
-	// show
-	public Category getByid(Integer id) {
-		return repository.findById(id).get();
-	}
 }

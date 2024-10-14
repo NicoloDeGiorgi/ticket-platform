@@ -42,10 +42,7 @@
 				<label for="operator" class="form-label"><strong>Operatore:</strong></label>
 				<input type="text" class="form-control" id="operator" placeholder="Inserisci l'operatore a cui vuoi assegnarlo.." th:field="*{operator}">
 			</div>
-			<div class="mb-3">
-							<label for="categoria" class="form-label"><strong>Categoria:</strong></label>
-							<input type="text" class="form-control" id="categoria" placeholder="Inserisci la cetegoria.." th:field="*{categoria}">
-						</div>
+
 			<div class="mb-3">
 							<label for="state"><strong>Stato:</strong></label>
 							<select id="state" name="state" th:field="${ticket.state}">

@@ -7,10 +7,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name="categories")
 public class Category {
 	
 	@Id
@@ -18,7 +19,7 @@ public class Category {
 	private Integer id;
 	
 	@NotNull
-	@Column(name="name", nullable = false, unique = true) //colonna NOME, " " , univoco
+	@Column(name="name", nullable = false) //colonna NOME, " " , univoco
 	private String name;
 	
 	@ManyToMany(mappedBy="categories")

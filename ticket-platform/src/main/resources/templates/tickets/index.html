@@ -1,110 +1,126 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{fragments/fragments :: head}"> 
+
+<head th:insert="~{fragments/fragments :: head}">
 </head>
+
 <body>
-<header th:insert="~{fragments/navbar :: navbar('index')}"></header>
+	<header th:insert="~{fragments/navbar :: navbar('index')}"></header>
 
-<main class="container">
-    <div class="row">
-        <div class="col-12">
-			<h1 class="py-4 mb-2 text-center">
-				LISTA DEI TICKET
-			</h1>
-			
-			<div class="mb-3">
-				<!--CREATE-->
-				<a th:href="@{/tickets/create}" class="ms-auto me-5 btn btn-lg btn-primary">Crea nuovo ticket</a>
-			</div>
-			
-           <!--Ricerca ticket per titolo-->
-			<form th:action="@{/tickets}" method="GET">
-				<div class="input-group input-group-sm mb-3">
-				  <span class="input-group-text" id="inputGroup-sizing-sm">Cerca</span>
-				  <input type="text" class="form-control" name="title" placeholder="Inserisci il titolo del ticket...">
-				  <input type="submit" class="form-control btn btn-sm btn-warning">
-			  </div>
-			</form>
-			<h3 th:text="${ticketTitle}"></h3>
-			
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Titolo</th>
-						<th>Dettaglio</th>
-						<th>Operatore</th>
-						<th>Stato</th>
-						
-						
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="ticket : ${tickets}">
-						<td th:text="${ticket.id}"></td>
-						<td th:text="${ticket.title}"></td>
-						<td th:text="${ticket.details}"></td>
-						<td th:text="${ticket.operator}"></td>
-						<td th:text="${ticket.state}"></td>
-						<td class="align-inline-block">
-				
-							<div style="white-space: nowrap;">
-							<!--SHOW-->
-							<a th:href="@{/tickets/show/{id}(id=${ticket.id})}" class="btn btn-sm btn-primary d-inline-block">
-								Dettaglio
-							</a>
-							<!--EDIT-->
-							<a th:href="@{/tickets/edit/{id}(id=${ticket.id})}"class="btn btn-sm btn-success d-inline-block ">
-								Modifca
-							</a>
-							
-							<!--DELETE--> 
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary btn-sm btn-danger " data-bs-toggle="modal" th:data-bs-target="'#delete-modal-'+ ${ticket.id}">
-							  Elimina
-							</button>
-							</div>
-							<!-- Modal -->
-							<div class="modal fade" th:id="'delete-modal-'+ ${ticket.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-							  <div class="modal-dialog">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h1 class="modal-title fs-5" id="staticBackdropLabel">Conferma di cancellazione</h1>
-							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							      </div>
-							      <div class="modal-body">
-							        Sei sicuro/a di voler eliminare il ticket: <strong>"[[${ticket.title}]]"</strong> ?
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+	<main class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="py-4 mb-2 text-center">
+					LISTA DEI TICKET
+				</h1>
 
-									<form class="d-inline-block "th:action="@{/tickets/delete/{id}(id=${ticket.id})}" method="post" >
-										<button type="submit" class="btn btn-danger d-inline-block">
-											Elimina
-										</button>
-									</form>
-							      </div>
-							    </div>
-							  </div>
-							</div>
+				<div class="mb-3">
+					<!--CREATE-->
+					<a th:href="@{/tickets/create}" class="ms-auto me-5 btn btn-lg btn-primary">Crea nuovo ticket</a>
+				</div>
+
+				<!--Ricerca ticket per titolo-->
+				<form th:action="@{/tickets}" method="GET">
+					<div class="input-group input-group-sm mb-3">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Cerca</span>
+						<input type="text" class="form-control" name="title"
+							placeholder="Inserisci il titolo del ticket...">
+						<input type="submit" class="form-control btn btn-sm btn-warning">
+					</div>
+				</form>
+				<h3 th:text="${ticketTitle}"></h3>
+
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Titolo</th>
+							<th>Dettaglio</th>
+							<th>Operatore</th>
+							<th>Stato</th>
+
+
+						</tr>
+					</thead>
+					<tbody>
+						<!--per ogni ticket che si trova in "tickets"-->
+						<tr th:each="ticket : ${tickets}">
+							<td th:text="${ticket.id}"></td>
+							<td th:text="${ticket.title}"></td>
+							<td th:text="${ticket.details}"></td>
+							<td th:text="${ticket.operator}"></td>
+							<td th:text="${ticket.state}"></td>
+							<td class="align-inline-block">
+
+								<div style="white-space: nowrap;">
+									<!--SHOW-->
+									<a th:href="@{/tickets/show/{id}(id=${ticket.id})}"
+										class="btn btn-sm btn-primary d-inline-block">
+										Dettaglio
+									</a>
+									<!--EDIT-->
+									<a th:href="@{/tickets/edit/{id}(id=${ticket.id})}"
+										class="btn btn-sm btn-success d-inline-block ">
+										Modifca
+									</a>
+
+									<!--DELETE-->
+									<!-- Button trigger modal -->
+									<button type="button" class="btn btn-primary btn-sm btn-danger "
+										data-bs-toggle="modal" th:data-bs-target="'#delete-modal-'+ ${ticket.id}">
+										Elimina
+									</button>
+								</div>
+								<!-- Modal -->
+								<div class="modal fade" th:id="'delete-modal-'+ ${ticket.id}" data-bs-backdrop="static"
+									data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+									aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h1 class="modal-title fs-5" id="staticBackdropLabel">Conferma di
+													cancellazione</h1>
+												<button type="button" class="btn-close" data-bs-dismiss="modal"
+													aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												Sei sicuro/a di voler eliminare il ticket:
+												<strong>"[[${ticket.title}]]"</strong> ?
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-bs-dismiss="modal">Chiudi</button>
+
+												<form class="d-inline-block "
+													th:action="@{/tickets/delete/{id}(id=${ticket.id})}" method="post">
+													<button type="submit" class="btn btn-danger d-inline-block">
+														Elimina
+													</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
 							</td>
-					</tr>
-				</tbody>
-			</table>
-        </th:block>
-            <th:block th:unless="${tickets.size() > 0}">
-                <h3 class="py-5 text-center">
-                    OPS! Nessun ticket trovato..
-                </h3>
-            </th:block>
-        </div>
-    </div>
-</main>
+						</tr>
+					</tbody>
+				</table>
+				</th:block>
+				<th:block th:unless="${tickets.size() > 0}">
+					<h3 class="py-5 text-center">
+						OPS! Nessun ticket trovato..
+					</h3>
+				</th:block>
+			</div>
+		</div>
+	</main>
 
-<footer th:replace="~{fragments/fragments :: footer}"></footer>
-<th:block th:replace="~{fragments/fragments :: scripts}"></th:block>
+	<footer th:replace="~{fragments/fragments :: footer}"></footer>
+	<th:block th:replace="~{fragments/fragments :: scripts}"></th:block>
 </body>
+
 </html>
 
 </body>
+
 </html>

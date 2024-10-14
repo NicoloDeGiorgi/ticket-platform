@@ -52,4 +52,5 @@ public String index(Model model) {
 		return "redirect:/categories";
 
 }
+	
 }

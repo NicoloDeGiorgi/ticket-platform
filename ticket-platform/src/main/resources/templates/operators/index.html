@@ -11,28 +11,29 @@
 		<div class="row">
 			<div class="col-12">
 
-			
-					<h1 class="py-4 mb-2 text-center">
-						OPERATORI
-					</h1>
-					
-					<table class="table table-striped table-hover">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Nome</th>
-								<th>Email</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="operator : ${operators}">
-								<td th:text="${operator.id}"></td>
-								<td th:text="${operator.name}"></td>
-								<td th:text="${operator.email}"></td>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+
+				<h1 class="py-4 mb-2 text-center">
+					OPERATORI
+				</h1>
+
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!--per ogni operatore che si trova in "operators"-->
+						<tr th:each="operator : ${operators}">
+							<td th:text="${operator.id}"></td>
+							<td th:text="${operator.name}"></td>
+							<td th:text="${operator.email}"></td>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
 			</div>
 		</div>

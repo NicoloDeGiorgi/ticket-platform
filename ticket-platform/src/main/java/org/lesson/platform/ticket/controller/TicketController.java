@@ -5,8 +5,10 @@ import java.time.LocalDate;
 
 import java.util.List;
 
+
 import org.lesson.platform.ticket.model.Note;
 import org.lesson.platform.ticket.model.Ticket;
+import org.lesson.platform.ticket.service.CategoryService;
 import org.lesson.platform.ticket.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,10 @@ public class TicketController {
 
 	@Autowired
 	private TicketService service;
-
+	
+	@Autowired
+	private CategoryService categoryService;
+	
 	// INDEX
 	@GetMapping() // ricerca libro per titolo
 	public String index(Model model, @RequestParam(name = "title", required = false) String title) {
@@ -58,7 +63,8 @@ public class TicketController {
 	// CREATE
 	@GetMapping("/create")
 	public String create(Model model) {
-		model.addAttribute("ticket", new Ticket());
+		model.addAttribute("ticket", new Ticket());//aggiungo nuovo ticket
+		model.addAttribute("categories", categoryService.findAll());//aggiungo nuova categoria
 
 		return "/tickets/create";
 	}
@@ -71,6 +77,7 @@ public class TicketController {
 			BindingResult bindingResult, 
 			Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("categories", categoryService.findAll());
 			return "/tickets/create";
 		} // se ci sono errori "torna indetro" altrimenti salva
 		service.create(formTicket);
