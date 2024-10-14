@@ -21,15 +21,16 @@ public class NoteController {
 	@Autowired
 	private NoteService service;
 	
+	//index
 @GetMapping()
 public String index(Model model) {
 	
 	model.addAttribute("notes", service.findAllSortedByCreatedAt());
-	
 	return "/notes/index";
 	
 }
 
+//create
 @PostMapping("/create")
 public String store(
 		// Validazione

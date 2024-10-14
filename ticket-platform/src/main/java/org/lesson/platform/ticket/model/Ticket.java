@@ -12,6 +12,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
@@ -46,10 +49,6 @@ public class Ticket {
 	@Column (name = "operator") //operatore  a cui è asseganto il ticket
 	private String operator;
 
-	@Size(min = 2, max = 250)
-	@Column(name = "categoria")
-	private String categoria;
-	
 	
 	@Column(name = "numberOfNotes")
 	private Integer numberOfNotes;
@@ -57,6 +56,7 @@ public class Ticket {
 	// RELAZIONE CON LE NOTE fa riferimento con la entità 'ticket'
 	@OneToMany(mappedBy = "ticket", cascade = { CascadeType.REMOVE }) // a cascata verranno rimossi tutte le note ad esse connessi
 	private List<Note> notes;
+
 	
 	// QUERY: calcola il numero di note associate a un ticket specifico che non sono state ancora create e (created_at null).
 	//         quindi restituisce la differenza tra il numero totale di note già associate a quel ticket (tickets.number_of_notes)
@@ -68,6 +68,17 @@ public class Ticket {
 			 "and t.created_at is null " +
 	         "where tickets.id = id) ")
 	private Integer remainingNotes;
+	
+	//RELAZIONE CON CATEGORIE, ogni ticket può essere collegato a N category
+	@ManyToMany
+	@JoinTable(
+			name="ticket_category",
+			joinColumns =@JoinColumn(name="tikcet_id"),
+			inverseJoinColumns=@JoinColumn(name="category_id")
+			)
+	
+	private List<Category> categories;
+
 
 	// GETTER E SETTER
 
@@ -112,18 +123,6 @@ public class Ticket {
 		this.operator = operator;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategory(String categoria) {
-		this.categoria = categoria;
-	}
-
 	public List<Note> getNotes() {
 		return notes;
 	}
@@ -147,6 +146,15 @@ public class Ticket {
 	public void setNumberOfNotes(Integer numberOfNotes) {
 		this.numberOfNotes = numberOfNotes;
 	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+	
 	
 
 }

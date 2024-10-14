@@ -10,14 +10,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class NoteService {
-     
+
 	@Autowired
 	private NoteRepository repository;
-	                        //ordinati per data
-	public List <Note> findAllSortedByCreatedAt(){
-		return repository.findAll(Sort.by("createdAt"));	
+
+	// index //ordinati per data
+	public List<Note> findAllSortedByCreatedAt() {
+		return repository.findAll(Sort.by("createdAt"));
 	}
-	
+
+	// create
 	public Note create(Note note) {
 		return repository.save(note);
 	}

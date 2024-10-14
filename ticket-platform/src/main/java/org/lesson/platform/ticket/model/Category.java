@@ -1,5 +1,7 @@
 package org.lesson.platform.ticket.model;
 
+import java.util.List;
+
 //import org.lesson.platform.ticket.repository.CategoryRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,11 +10,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name="categories")
 public class Category {
 	
 	//@Autowired
@@ -22,9 +24,12 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //generazione ID
 	private Integer id;
 	
+	@NotNull
 	@Column(name="name", nullable = false, unique = true) //colonna NOME, " " , univoco
 	private String name;
-
+	
+	@ManyToMany(mappedBy="categories")
+	private List <Ticket> tickets;
 
 	
 	//GETTER E SETTER 
@@ -44,5 +49,14 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+	
 
 }

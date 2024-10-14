@@ -17,28 +17,29 @@ public class TicketService {
 
 		return repository.findAll();
 	}
-
-	public Ticket getById(Integer id) {
-		return repository.findById(id).get();
-	}
-	
+	//index
 	public List<Ticket> findByTitle(String title){
 		return repository.findByTitle(title);
 	}
-
-	public Ticket ceate(Ticket ticket) {
+    //create
+	public Ticket create(Ticket ticket) {
 		return repository.save(ticket);
 
 	}
-
+    //edit
 	public Ticket update(Ticket ticket) {
 		return repository.save(ticket);
 
 	}
-
+	//show
+	public Ticket getById(Integer id) {
+		return repository.findById(id).get();
+	}
+    //delete
 	public void deleteById(Integer id) {
 
 		repository.deleteById(id);
 	}
+
 
 }

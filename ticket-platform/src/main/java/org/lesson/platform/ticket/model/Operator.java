@@ -1,14 +1,10 @@
 package org.lesson.platform.ticket.model;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -32,12 +28,6 @@ public class Operator {
 	@Size(max=150)
 	@Column(name = "email", nullable = false, unique = true) //colonna EMAIL OPERATORE, " ", deve essere univoco
 	private String email;
-	
-	//RELAZIONE CON I TICKET fa riferimento con la entità 'operatore'
-	@OneToMany(mappedBy = "operator", cascade = { CascadeType.REMOVE })
-	private List<Ticket> tickets;
-
-	 
 	
 	//GETTER E SETTER
 
@@ -64,5 +54,5 @@ public class Operator {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
 }

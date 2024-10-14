@@ -32,7 +32,6 @@
 					<tr>
 						<th>ID</th>
 						<th>Titolo</th>
-						<th>Categoria</th>
 						<th>Dettaglio</th>
 						<th>Operatore</th>
 						<th>Stato</th>
@@ -44,7 +43,6 @@
 					<tr th:each="ticket : ${tickets}">
 						<td th:text="${ticket.id}"></td>
 						<td th:text="${ticket.title}"></td>
-						<td th:text="${ticket.categoria}"></td>
 						<td th:text="${ticket.details}"></td>
 						<td th:text="${ticket.operator}"></td>
 						<td th:text="${ticket.state}"></td>

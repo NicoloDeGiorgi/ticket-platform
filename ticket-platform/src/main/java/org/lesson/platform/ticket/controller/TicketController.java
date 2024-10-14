@@ -73,7 +73,7 @@ public class TicketController {
 		if (bindingResult.hasErrors()) {
 			return "/tickets/create";
 		} // se ci sono errori "torna indetro" altrimenti salva
-		service.ceate(formTicket);
+		service.create(formTicket);
 
 		return "redirect:/tickets"; // ritorna alla index
 	}
